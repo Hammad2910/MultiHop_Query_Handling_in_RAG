@@ -15,8 +15,8 @@ def main():
     model = model.to(device)
 
     # Input and output paths
-    input_file = "../hotpotQA_dataset_versions/11643paras_1200queries/English/11643_paras.csv"
-    output_file = "../hotpotQA_dataset_versions/11643paras_1200queries/Urdu/11643_paras_translated.csv"
+    input_file = "../hotpotQA_dataset_versions/5884paras_600queries/English/5884_paras.csv"
+    output_file = "../hotpotQA_dataset_versions/5884paras_600queries/Urdu/5884_paras_translated.csv"
 
     # Remove old output file if exists
     if os.path.exists(output_file):
