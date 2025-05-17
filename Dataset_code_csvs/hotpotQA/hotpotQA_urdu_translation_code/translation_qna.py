@@ -7,7 +7,7 @@ import os
 def translate_text(text, processor, model, device):
     inputs = processor(text=text, src_lang="eng", return_tensors="pt")
     inputs = {key: value.to(device) for key, value in inputs.items()}
-    
+
     with torch.no_grad():
         output_tokens = model.generate(
             **inputs,
@@ -27,7 +27,7 @@ def main():
     model = SeamlessM4Tv2Model.from_pretrained("facebook/seamless-m4t-v2-large")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print("device: ",device)
+    print("device: ", device)
     model = model.to(device)
 
     # Paths
@@ -51,6 +51,8 @@ def main():
 
     for i, row in enumerate(df.itertuples(index=False), 1):
         q, a, s = row.question, row.answer, row.actual_retrieved_sentences
+
+        row_start_time = time.time()
         try:
             translated_q = translate_text(q, processor, model, device)
             translated_a = translate_text(a, processor, model, device)
@@ -59,13 +61,16 @@ def main():
             print(f"⚠️ Error at row {i}: {e}")
             translated_q = translated_a = translated_s = ""
 
+        row_end_time = time.time()
+        row_time = row_end_time - row_start_time
+
         translated_questions.append(translated_q)
         translated_answers.append(translated_a)
         translated_sentences.append(translated_s)
 
-        print(f"✅ Translated {i}/{total}")
+        print(f"✅ Translated {i}/{total} - ⏱️ Time taken: {row_time:.2f} seconds")
 
-        # Every 100 records or end
+        # Every 100 records or at the end
         if i % 100 == 0 or i == total:
             batch_end = time.time()
             batch_time = batch_end - batch_start
