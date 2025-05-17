@@ -1,2 +1,3 @@
 Dataset_code_csvs/hotpotQA/hotpotQA_complete_dataset/
 venv/
+MultiHop for English/vector_db/paragraphs/5884_paras/5884_paras_index.faiss
