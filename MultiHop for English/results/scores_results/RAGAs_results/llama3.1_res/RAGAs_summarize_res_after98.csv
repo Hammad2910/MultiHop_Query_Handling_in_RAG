@@ -1,0 +1,6 @@
+﻿Metric,Simple RAG,LQR RAG,ModLQR RAG
+Faithfulness,0.344,0.365,0.413
+Answer Relevancy,0.362,0.464,0.502
+Context Recall,0.545,0.473,0.598
+Context Precision,0.123,0.08,0.064
+Entity Recall,0.475,0.445,0.567
