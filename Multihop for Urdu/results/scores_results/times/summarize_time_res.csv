@@ -1,0 +1,7 @@
+,Metric,Simple RAG,LR-RAG,DQ-RAG
+0,classification_time,,3.488,5.776
+1,decomposition_time,,5.46,7.224
+2,generation_time,6.875,2.061,5.333
+3,retrieval_time,0.056,5.21,8.848
+4,total_time,6.931,16.219,27.18
+5,total_time_without_classification,,12.731,21.405
